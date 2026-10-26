@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de hardware · AWD móvil</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/awd-mobile.css">
+  <%# Móvil: SIN Chart.js, SIN chart-init.js, SIN gráfico y SIN tabla de especificaciones en el DOM. %>
+  <script defer src="/js/filters.js"></script>
+</head>
+<body>
+  <%- include('partials/header', { mode: 'AWD · vista móvil' }) %>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Filtros">
+      <%- include('partials/filters', { sheet: true }) %>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+    <main class="catalog">
+      <div class="toolbar">
+        <p class="count" id="resultCount" aria-live="polite">12 productos</p>
+        <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="sidebar">Filtros</button>
+      </div>
+      <section class="grid" id="grid" aria-label="Productos">
+        <% products.forEach(p => { %><%- include('partials/card', { p, mode: 'mobile' }) %><% }) %>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

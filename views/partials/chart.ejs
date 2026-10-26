@@ -1,0 +1,8 @@
+<%# Gráfico de comparativa (Chart.js). Solo lo incluyen RWD y AWD-desktop. %>
+<section class="chart-box" aria-labelledby="chart-title">
+  <h2 id="chart-title">Comparativa de precio (USD)</h2>
+  <div class="chart-canvas">
+    <canvas id="compareChart" role="img" aria-label="Gráfico de barras con el índice de rendimiento (0 a 100) de cada producto"></canvas>
+  </div>
+</section>
+<script>window.CHART_DATA = <%- JSON.stringify({ labels: products.map(p => p.code), scores: products.map(p => p.price) }) %>;</script>

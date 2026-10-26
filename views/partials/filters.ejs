@@ -1,0 +1,19 @@
+<%# Filtros avanzados. El parámetro "sheet" agrega el botón de cerrar (solo tiene sentido si el panel es una hoja inferior). %>
+<form id="filters" class="filters" onsubmit="return false">
+  <div class="sheet-head">
+    <h2>Filtros</h2>
+    <% if (locals.sheet) { %><button type="button" class="sheet-close" id="sheetClose">Cerrar</button><% } %>
+  </div>
+  <fieldset>
+    <legend>Categoría</legend>
+    <% Object.entries(categories).forEach(([key, label]) => { %>
+      <label class="check"><input type="checkbox" name="cat" value="<%= key %>"> <%= label %></label>
+    <% }) %>
+  </fieldset>
+  <fieldset>
+    <legend>Precio máximo: <output id="priceOut">$25,000</output>
+    <input type="range" id="maxPrice" min="100" max="25000" step="100" value="25000" aria-label="Precio máximo">
+  </fieldset>
+  <label class="check"><input type="checkbox" id="inStock"> Solo con stock</label>
+  <button type="reset" class="btn-ghost">Limpiar filtros</button>
+</form>

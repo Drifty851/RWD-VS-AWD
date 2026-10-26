@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de hardware · AWD desktop</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/awd-desktop.css">
+  <script defer src="/vendor/chart/chart.umd.js"></script>
+  <script defer src="/js/filters.js"></script>
+  <script defer src="/js/chart-init.js"></script>
+</head>
+<body>
+  <%- include('partials/header', { mode: 'AWD · vista desktop' }) %>
+  <div class="layout">
+    <%# Desktop: panel lateral fijo (sin botón, sin cortina, sin hoja inferior). %>
+    <aside class="sidebar" id="sidebar" aria-label="Filtros y comparativa">
+      <%- include('partials/filters') %>
+      <%- include('partials/chart') %>
+    </aside>
+    <main class="catalog">
+      <div class="toolbar">
+        <p class="count" id="resultCount" aria-live="polite">12 productos</p>
+      </div>
+      <section class="grid" id="grid" aria-label="Productos">
+        <% products.forEach(p => { %><%- include('partials/card', { p, mode: 'desktop' }) %><% }) %>
+      </section>
+      <%- include('partials/spec-table') %>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de hardware · RWD</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <%# RWD: TODOS los clientes reciben TODO el HTML y TODOS los scripts, aunque en móvil se oculte parte. %>
+  <script defer src="/vendor/chart/chart.umd.js"></script>
+  <script defer src="/js/filters.js"></script>
+  <script defer src="/js/chart-init.js"></script>
+</head>
+<body>
+  <%- include('partials/header', { mode: 'RWD · mismo HTML para todos' }) %>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Filtros y comparativa">
+      <%- include('partials/filters', { sheet: true }) %>
+      <%- include('partials/chart') %>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+    <main class="catalog">
+      <div class="toolbar">
+        <p class="count" id="resultCount" aria-live="polite">12 productos</p>
+        <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="sidebar">Filtros</button>
+      </div>
+      <section class="grid" id="grid" aria-label="Productos">
+        <% products.forEach(p => { %><%- include('partials/card', { p, mode: 'rwd' }) %><% }) %>
+      </section>
+      <%- include('partials/spec-table') %>
+    </main>
+  </div>
+</body>
+</html>

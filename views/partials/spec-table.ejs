@@ -1,0 +1,32 @@
+<%# Tabla completa de especificaciones. Solo la incluyen RWD y AWD-desktop. %>
+<section class="spec-section" aria-labelledby="spec-title">
+  <h2 id="spec-title">Ficha técnica comparativa</h2>
+  <div class="table-scroll" role="region" aria-label="Tabla de especificaciones, desplazable" tabindex="0">
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th scope="col">Modelo</th><th scope="col">Categoría</th><th scope="col">Capacidad</th>
+          <th scope="col">Interfaz</th><th scope="col">Formato</th><th scope="col">Memoria / detalle</th>
+          <th scope="col">Frecuencia / rendimiento</th><th scope="col">Consumo</th>
+          <th scope="col">Garantía</th><th scope="col">Certificaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+        <tr>
+          <th scope="row"><%= p.name %></th>
+          <td><%= categories[p.cat] %></td>
+          <td><%= p.specs.cap %></td>
+          <td><%= p.specs.iface %></td>
+          <td><%= p.specs.form %></td>
+          <td><%= p.specs.mem %></td>
+          <td><%= p.specs.freq %></td>
+          <td><%= p.specs.tdp %></td>
+          <td><%= p.specs.warranty %></td>
+          <td><%= p.specs.cert %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

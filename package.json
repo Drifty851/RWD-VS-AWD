@@ -1,0 +1,18 @@
+{
+  "name": "rwd-vs-awd-lab",
+  "version": "1.0.0",
+  "description": "Laboratorio: Responsive (RWD) vs Adaptive (AWD) con Node.js/Express",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chart.js": "4.4.7",
+    "compression": "^1.7.4",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

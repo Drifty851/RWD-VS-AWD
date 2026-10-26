@@ -1,0 +1,9 @@
+<header class="topbar">
+  <a class="brand" href="/">RackShelf</a>
+  <span class="mode-tag"><%= mode %></span>
+  <%# Cada enlace filtra por su categoría (lo maneja filters.js). Sin JS, href="#grid" lleva a los productos. %>
+  <nav class="nav" id="nav" aria-label="Categorías">
+    <a href="#grid" data-cat="all" aria-current="true">Todos</a>
+    <% Object.entries(categories).forEach(([key, label]) => { %><a href="#grid" data-cat="<%= key %>"><%= label %></a><% }) %>
+  </nav>
+</header>

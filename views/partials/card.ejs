@@ -1,0 +1,35 @@
+<%#
+  Tarjeta de producto. Parámetro "mode":
+    'rwd'     -> <picture> + srcset: el NAVEGADOR elige formato y tamaño (AVIF/WebP/JPG, 400/800/1600 w)
+    'desktop' -> el SERVIDOR ya decidió: una sola imagen WebP de 800 px
+    'mobile'  -> el SERVIDOR ya decidió: una sola imagen WebP de 400 px
+%>
+<%
+  const sizes = '(max-width: 640px) 112px, (max-width: 1024px) 45vw, 310px';
+  const set = ext => [400, 800, 1600].map(w => `/img/${p.id}-${w}.${ext} ${w}w`).join(', ');
+  const fixedW = mode === 'mobile' ? 400 : 800;
+%>
+<article class="card" data-cat="<%= p.cat %>" data-price="<%= p.price %>" data-stock="<%= p.stock %>">
+  <figure>
+    <% if (mode === 'rwd') { %>
+    <picture>
+      <source type="image/avif" srcset="<%= set('avif') %>" sizes="<%= sizes %>">
+      <source type="image/webp" srcset="<%= set('webp') %>" sizes="<%= sizes %>">
+      <img src="/img/<%= p.id %>-800.jpg" srcset="<%= set('jpg') %>" sizes="<%= sizes %>" width="800" height="500" alt="<%= p.name %>" decoding="async">
+    </picture>
+    <% } else { %>
+    <img src="/img/<%= p.id %>-<%= fixedW %>.webp" width="<%= fixedW %>" height="<%= fixedW * 5 / 8 %>" alt="<%= p.name %>" decoding="async">
+    <% } %>
+  </figure>
+  <div class="card-body">
+    <p class="cat-tag"><%= categories[p.cat] %></p>
+    <h3><%= p.name %></h3>
+    <ul class="specs">
+      <% p.highlights.forEach(h => { %><li><%= h %></li><% }) %>
+    </ul>
+    <div class="card-foot">
+      <span class="price">$<%= p.price.toLocaleString('en-US') %></span>
+      <button type="button" class="buy"<%= p.stock === 0 ? ' disabled' : '' %>><%= p.stock === 0 ? 'Sin stock' : 'Comprar' %></button>
+    </div>
+  </div>
+</article>
